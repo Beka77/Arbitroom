@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Mulish:wght@300;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/FAQ.css' %}">
+  <link rel="stylesheet" href="{% static 'liquidity.css' %}">
+  <link rel="stylesheet" href="{% static 'vuvod.css' %}">
+
+</head>
+<body>
+
+{% block content %}
+
+{% endblock %}
+
+<footer class="footer">
+    <div class="footer__logo">
+      <img src="{% static 'img/header/logo.svg' %}" alt="">
+    </div>
+    <nav>
+      <p class="footer__nav-text">© 2022 Arbitrum. All rights reserved.
+        Политика конфиденциальности</p>
+    </nav>
+  </footer>
+  <script src="{% static 'main.js' %}"></script>
+</body>
+
+</html>

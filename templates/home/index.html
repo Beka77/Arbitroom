@@ -1,12 +1,290 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ArbitRoom</title>
-</head>
-<body>
-    <h1>Hello World!</h1>
-</body>
-</html>
+{% extends 'homepage.html' %}
+{% load static %}
+{% block content %}
+{% include 'include/header.html' %}
+  <header class="header">
+    <div class="header__logo">
+      <img src="{% static 'img/header/logo.svg' %}" alt="" />
+    </div>
+    <nav class="header__nav">
+      <ul class="header__menu">
+        <li class="header__menu-link"><a href="./index.html">Главная</a></li>
+        <li class="header__menu-link"><a href="../liquidity/liquidity.html">Пул ликвидности</a></li>
+        <li class="header__menu-link"><a href="../FAQ/FAQ.html">FAQ</a></li>
+      </ul>
+    </nav>
+    <div class="header__content">
+      {% if user.is_authenticated %}
+      <a href="{% url 'logout' %}"><button  class="header__content-btn" id="myBtn1">{{ user.username }}</button></a>   
+      {% else %}
+      <button class="header__content-btn" id="myBtn1">Вход / </button>
+      <button class="header__content-btn" id="myBtn">Регистрация</button>
+      {% endif %}
+    </div>
+  </header>
+  <div class="popup" id="mypopup">
+    <div class="backdrop" style="height: 100%;">
+      <div class="modal">
+        <button class="close">&times;</button>
+        <div class="tab"></div>
+        <form action="" class="form" method="POST">
+          {% csrf_token %}
+          <label for="" class="form__label">
+            <div class="form__email">
+              <p class="form__email-text">Email</p><br>
+              <input type="email" name="email"  class="form__email-int">
+            </div>
+            <div class="form__surname">
+              <div class="row">
+                <div class="col-6">
+                  <p class="form__surname-text">Ваше имя</p><br>
+                  <input type="text" name="first_name" class="form__surname-int">
+                </div>
+                <div class="col-6">
+                  <p class="form__surname-text">Username</p><br>
+                  <input type="text" name="username"  class="form__surname-int">
+                </div>
+              </div>
+            </div>
+            <div class="form__password">
+              <p class="form__password-text">Пароль</p><br>
+              <input type="password" name="password"  class="form__password-int">
+            </div>
+            <div class="form__password">
+              <p class="form__password-text">Пароль</p><br>
+              <input type="password" name="password2  "  class="form__password-int">
+            </div>
+            <div class="form__number">
+              <p class="form__number-text">Адрес кошелька</p><br>
+              <input type="number" name="wallet" class="form__number-int">
+            </div>
+            <div class="form__checkbox">
+              <input type="checkbox"  id="" class="form__checkbox-int">
+              <p class="form__checkbox-text">Я принимаю Условия предоставления услуг и Политику конфиденциальности</p>
+            </div>
+            <button type="submit" name="register" class="form__label-btn">Зарегистрироваться </button>
+          </label>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="popup1" id="mypopup1">
+    <div class="modal">
+      <div class="modal__box">
+        <div class="modal__vxod">
+          <button class="close1">&times;</button>
+        </div>
+        
+        <form class="modal__form" method="POST">
+          {% csrf_token %}
+          <p class="modal__pp">Имя пользователя</p>
+          <input class="modal__input" name="username" placeholder="" type="text">
+          <p class="modal__pp">Пароль</p>
+          <input class="modal__input" name="password" type="password">
+          <div class="">
+            <button class="modal__buttom" name="login" >Войти</button>
+          </div>
+          <div class="modal__line"></div>
+
+        </form>
+        <div class="modal__pp rrr">Уже есть аккаунт? войти</div>
+      </div>
+    </div>
+  </div>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero__content">
+          <h2 class="hero__content-title">
+            Прибыльный Арбитраж <br />
+            Криптовалют
+          </h2>
+          <p class="hero__content-text">
+            Arbitroom — платформа, которая использует для работы
+            автоматизированных <br />
+            ботов для получения максимальной прибыли с арбитражной торговли
+          </p>
+          <button class="hero__content-btn" id="myBtn"><a href="">Начать сейчас</a></button>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <div class="hero__wrap">
+              <div class="image">
+                <img src="{% static 'img/home/Vector.svg' %}" alt="" class="hero__wrap-img" />
+              </div>
+              <p class="hero__wrap-text">
+                Межбиржевой и внутрибиржевой арбитраж
+              </p>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="hero__wrap">
+              <div class="image">
+                <img src="{% static 'img/home/Vector (1).svg' %}" alt="" class="hero__wrap-img" />
+              </div>
+              <p class="hero__wrap-text">
+                Гарантированная прибыль в том числе и на падающем рынке
+              </p>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="hero__wrap">
+              <div class="image">
+                <img src="{% static 'img/home/Vector (2).svg' %}" alt="" class="hero__wrap-img" />
+              </div>
+              <p class="hero__wrap-text">
+                Возврат инвестиции по окончанию контракта
+              </p>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="hero__wrap">
+              <div class="image">
+                <img src="{% static 'img/home/Vector (3).svg' %}" alt="" class="hero__wrap-img" />
+              </div>
+              <p class="hero__wrap-text">Круглосуточная поддержка в чате</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="wrapper">
+      <div class="container">
+        <div class="wrapper__logo">
+          <h2 class="wrapper__logo-text">
+            Основные <br />
+            преимущества
+          </h2>
+        </div>
+        <div class="row">
+          <div class="col-4">
+            <div class="wrapper__content">
+              <div class="block">
+                <img class="wrapper__content-img" src="{% static 'img/home/Vector (4).svg' %}" alt="" />
+              </div>
+              <p class="wrapper__content-text">
+                Моментальное открытие и закрытие сделок при помощи
+                ArbitroomBot
+              </p>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="wrapper__content">
+              <div class="block">
+                <img class="wrapper__content-img" src="{% static 'img/home/Vector (5).svg' %}" alt="" />
+              </div>
+              <p class="wrapper__content-text">
+                Отсутствие рисков связанных с просадкой вашего портфеля или
+                всего крипторынка в целом
+              </p>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="wrapper__content">
+              <div class="block">
+                <img class="wrapper__content-img" src="{% static 'img/home/Vector (6).svg' %}" alt="" />
+              </div>
+              <p class="wrapper__content-text">
+                Диверсификация инвестиций в разные торговые инструменты
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="flex">
+          <div class="wrapper__block">
+            <p class="wrapper__block-text">
+              Используйте свой шанс прямо сейчас
+            </p>
+            <button class="wrapper__block-btn" id="myBtn">Начать сейчас</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="complex">
+      <div class="container">
+        <div class="complex__logo">
+          <h2 class="complex__logo-title">Мы делаем сложное простым</h2>
+          <p class="complex__logo-text">
+            Платформа Arbitroom - это автоматизированная площадка как для<br />
+            внутрибиржевой, так и межбиржевой торговли
+          </p>
+        </div>
+        <div class="complex__flex">
+          <div class="complex__img"></div>
+        </div>
+        <p class="complex__text">
+          Используя наши инструменты появилась возможность зарабатывать на
+          арбитраже <br />
+          криптовалют с минимальными рисками и экономией личного времени
+        </p>
+      </div>
+    </section>
+    <section class="friendly">
+      <div class="container">
+        <div class="friendly__logo">
+          <h2 class="friendly__logo-title">Как это работает</h2>
+        </div>
+        <div class="row">
+          <div class="col-4">
+            <div class="friendly__content">
+              <div class="number">
+                <h4 class="friendly__content-number">01</h4>
+              </div>
+              <p class="friendly__contend-text">
+                Пройти простую регистрацию
+              </p>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="friendly__content">
+              <div class="number">
+                <h4 class="friendly__content-number">02</h4>
+              </div>
+              <p class="friendly__contend-text">
+                Пополнить баланс в личном кабинете
+              </p>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="friendly__content">
+              <div class="number">
+                <h4 class="friendly__content-number">03</h4>
+              </div>
+              <p class="friendly__contend-text">
+                Инвестировать в пул согласно лимитам
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4">
+            <div class="friendly__content">
+              <div class="number">
+                <h4 class="friendly__content-number">04</h4>
+              </div>
+              <p class="friendly__contend-text">
+                Получать проценты и при необходимости выводить
+              </p>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="friendly__content">
+              <div class="number">
+                <h4 class="friendly__content-number">05</h4>
+              </div>
+              <p class="friendly__contend-text">
+                Средства из пула ликвидности доступн к выводу в любое время
+              </p>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="friendly__content">
+              <a href="../liquidity/liquidity.html" class="friendly__content-link">Инвестировать в пул</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  {% include 'include/footer.html' %}
+{% endblock %}
